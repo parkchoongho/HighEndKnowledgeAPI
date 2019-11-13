@@ -4,6 +4,7 @@ const helmet = require("helmet");
 
 const user = require("./routers/user");
 const quiz = require("./routers/quiz");
+const my = require("./routers/my");
 
 const PORT = process.env.PORT || 3000;
 const dbURI = process.env.MONGODB_URI || "mongodb://localhost/highendknowledge";
@@ -26,6 +27,7 @@ app.use(express.json());
 
 app.use("/auth", user);
 app.use("/api/quiz", quiz);
+app.use("/api/my", my);
 
 app.use(() => mongoose.disconnect());
 

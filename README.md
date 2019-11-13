@@ -80,11 +80,11 @@
 | 정답 페이지                           |                   | GET    |                                      | Result        |
 | 오답 페이지                           |                   | GET    |                                      | Result        |
 | 랜딩 페이지 선택<br />(발바닥 아이콘) |                   | GET    |                                      | Result        |
-| 마이 페이지 선택                      | /api/mypage       | GET    | token                                | Result        |
+| 마이 페이지 선택                      | /api/my/page      | GET    | token                                | Result        |
 | 마이 페이지                           |                   | GET    |                                      | Result        |
-| 개인정보 페이지 선택                  | /api/myinfo       | GET    | Token                                | Result        |
+| 개인정보 페이지 선택                  | /api/my/info      | GET    | Token                                | Result        |
 | 개인정보 페이지                       |                   | GET    |                                      | result        |
-| 개인정보 수정 선택                    | /api/             | PATCH  | password, name                       | Result        |
+| 개인정보 수정 선택                    | /api/my/info      | PATCH  | password, name                       | Result        |
 | 풀었던 퀴즈 선택                      |                   | GET    |                                      | result        |
 
 ## Front (Web)

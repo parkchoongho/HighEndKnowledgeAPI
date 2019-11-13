@@ -68,15 +68,15 @@
 | 구분                                  | url               | method | parameter                            | response      |
 | ------------------------------------- | ----------------- | ------ | ------------------------------------ | ------------- |
 | 로그인 페이지(Mainpage)               |                   | GET    |                                      |               |
-| 로그인 버튼 선택                      | /api/login        | POST   | id, password                         | result, token |
+| 로그인 요청                           | /auth/login       | POST   | id, password                         | result, token |
 | 회원가입 버튼 선택                    |                   | GET    |                                      | Result        |
 | 회원가입 페이지                       |                   | GET    |                                      | Result        |
-| ID 중복체크                           | /api/idcheck      | GET    | id                                   | Result        |
-| 회원가입 완료 선택                    | /api/join         | POST   | id, password, name, gender, birthday | result        |
+| ID 중복체크                           | /auth/idcheck     | GET    | id                                   | Result        |
+| 회원가입  요청                        | /auth/join        | POST   | id, password, name, gender, birthday | result        |
 | 랜딩 페이지                           |                   | GET    |                                      | Result        |
-| 퀴즈 핀 선택                          | /api/know/:pin_id | GET    | pin_id                               | Result        |
+| 퀴즈 핀 선택                          | /api/quiz/:pin_id | GET    | pin_id                               | Result        |
 | 퀴즈 페이지                           |                   | GET    |                                      | Result        |
-| 문항 선택                             | /api/know/choice  | POST   | choice_number, token                 | Result        |
+| 문항 선택                             | /api/quiz/choice  | POST   | choice_number, token                 | Result        |
 | 정답 페이지                           |                   | GET    |                                      | Result        |
 | 오답 페이지                           |                   | GET    |                                      | Result        |
 | 랜딩 페이지 선택<br />(발바닥 아이콘) |                   | GET    |                                      | Result        |

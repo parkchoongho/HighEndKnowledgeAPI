@@ -17,7 +17,8 @@ module.exports = () => {
       return done(null, {
         id: user._id,
         name: user.name,
-        complete_quizs: user.complete_quizs
+        complete_quizs: user.complete_quizs,
+        admin: user.admin
       });
     } else {
       return done(new Error("user not found"), null);

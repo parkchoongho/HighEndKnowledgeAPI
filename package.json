@@ -6,6 +6,10 @@
   "scripts": {
     "start": "nodemon index.js"
   },
+  "engines": {
+    "node": "10.15.3",
+    "yarn": "1.17.3"
+  },
   "dependencies": {
     "@hapi/joi": "^16.1.7",
     "bcrypt": "^3.0.6",

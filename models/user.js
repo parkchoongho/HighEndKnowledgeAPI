@@ -9,16 +9,17 @@ const userSchema = new Schema({
     required: true,
     minlength: 3,
     maxlength: 30,
-    lowercase: true
+    lowercase: true,
+    unique: true
   },
   password: {
     type: String,
-    required: true,
-    lowercase: true
+    required: true
   },
   birth: Date,
   gender: String,
-  complete_quizs: [{ type: mongoose.Types.ObjectId, ref: "Quiz" }]
+  complete_quizs: [{ type: mongoose.Types.ObjectId, ref: "Quiz" }],
+  admin: { type: Boolean, default: false }
 });
 
 const User = model("User", userSchema);

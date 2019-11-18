@@ -29,4 +29,35 @@ router.post("/join", async (req, res, next) => {
   next();
 });
 
+router.post("/login", async (req, res, next) => {
+  const { name, password } = req.body;
+  const user = await User.findOne({ name });
+
+  if (!user) {
+    res.json({ result: false });
+    next();
+    return;
+  }
+
+  const result = await bcrypt.compare(password, user.password);
+
+  if (result) {
+    // Token 생성
+    const token = jwt.sign(
+      {
+        id: user._id,
+        name: user.name,
+        admin: user.admin
+      },
+      jwtSecret,
+      { expiresIn: "1h" }
+    );
+    res.json({ result: true, token, admin: user.admin });
+    next();
+  } else {
+    res.json({ result: false });
+    next();
+  }
+});
+
 module.exports = router;

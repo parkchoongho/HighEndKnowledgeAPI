@@ -26,9 +26,29 @@ router.post("/", auth.authenticate(), async (req, res, next) => {
     lat,
     lon
   });
-  await quiz.save();
-  res.json({ result: true });
-  next();
+
+  try {
+    await quiz.save();
+    res.json({ result: true });
+  } catch (error) {
+    res.status(400).json({ result: false, error });
+  } finally {
+    next();
+  }
+});
+
+router.get("/:pin_id", auth.authenticate(), async (req, res, next) => {
+  const { pin_id } = req.params;
+
+  try {
+    const currentQuiz = await Quiz.findById(pin_id);
+    console.log(currentQuiz);
+    res.json({ result: true, currentQuiz });
+  } catch (error) {
+    res.status(400).json({ result: false, error });
+  } finally {
+    next();
+  }
 });
 
 module.exports = router;

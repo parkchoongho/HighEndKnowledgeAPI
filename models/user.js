@@ -14,8 +14,6 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    minlength: 3,
-    maxlength: 30,
     lowercase: true
   },
   birth: Date,

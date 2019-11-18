@@ -28,3 +28,5 @@ router.post("/join", async (req, res, next) => {
   res.json({ result: true });
   next();
 });
+
+module.exports = router;

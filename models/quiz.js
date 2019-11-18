@@ -26,4 +26,4 @@ function validateQuiz(quiz) {
   return schema.validate(quiz);
 }
 
-module.exports = { User, validateQuiz };
+module.exports = { Quiz, validateQuiz };

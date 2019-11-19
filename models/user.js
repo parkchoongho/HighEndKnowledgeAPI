@@ -37,8 +37,7 @@ function validateUser(user) {
       .min(3)
       .max(30),
     birth: Joi.date(),
-    gender: Joi.string(),
-    complete_quizs: Joi.array().items(Joi.string())
+    gender: Joi.string()
   });
   return schema.validate(user);
 }

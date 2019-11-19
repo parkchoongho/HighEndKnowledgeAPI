@@ -89,14 +89,14 @@
 
 ## Front (Web)
 
-| 구분               | url           | method | parameter                                                  | response                    |
-| ------------------ | ------------- | ------ | ---------------------------------------------------------- | --------------------------- |
-| Admin 페이지       | /admin        | GET    |                                                            | Result, Pin_id, title, tags |
-| 퀴즈 수정 페이지   | /admin/modify | GET    | Pin_id                                                     | Result                      |
-| 퀴즈 수정 버튼     | /admin/modify | POST   | Pin_id, title, contents, answer, tags, latitude, longitude | Result                      |
-| 퀴즈 등록 페이지   | /admin/quiz   | GET    |                                                            | Result                      |
-| 퀴즈 배경화면 버튼 |               |        |                                                            | Result                      |
-| 퀴즈 등록 버튼     | /admin/quiz   | POST   | Pin_id, title, contents, answer, tags, latitude, longitude | Result                      |
+| 구분               | url                   | method | parameter                                                  | response                    |
+| ------------------ | --------------------- | ------ | ---------------------------------------------------------- | --------------------------- |
+| Admin 페이지       | /admin                | GET    |                                                            | Result, Pin_id, title, tags |
+| 퀴즈 수정 페이지   | /admin/modify/:pin_id | GET    | Pin_id                                                     | Result                      |
+| 퀴즈 수정 버튼     | /admin/modify/:pin_id | PATCH  | Pin_id, title, contents, answer, tags, latitude, longitude | Result                      |
+| 퀴즈 등록 페이지   | /admin/quiz           | GET    |                                                            | Result                      |
+| 퀴즈 배경화면 버튼 |                       |        |                                                            | Result                      |
+| 퀴즈 등록 버튼     | /admin/quiz           | POST   | Pin_id, title, contents, answer, tags, latitude, longitude | Result                      |
 
 # DB 구조
 

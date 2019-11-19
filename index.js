@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
+const cors = require("cors");
 
 const user = require("./routers/user");
 const quiz = require("./routers/quiz");
@@ -17,6 +18,7 @@ const dbURI =
 const app = express();
 
 app.use(helmet());
+app.use(cors());
 app.use((req, res, next) => {
   mongoose
     .connect(dbURI, {

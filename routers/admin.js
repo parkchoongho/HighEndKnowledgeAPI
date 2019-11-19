@@ -63,12 +63,12 @@ router.patch(
       return;
     }
     const { pin_id } = req.params;
-    const { title, contents, answer, tags, lat, lon } = req.body;
+    const { title, contents, distracter, answer, tags, lat, lon } = req.body;
 
     try {
       const updatedQuiz = await Quiz.updateOne(
         { _id: pin_id },
-        { $set: { title, contents, answer, tags, lat, lon } }
+        { $set: { title, contents, distracter, answer, tags, lat, lon } }
       );
 
       res.json({ result: true, updatedQuiz });
@@ -90,7 +90,7 @@ router.post(
       next();
       return;
     }
-    const { title, contents, answer, tags, lat, lon } = req.body;
+    const { title, contents, distracter, answer, tags, lat, lon } = req.body;
     if (validateQuiz(req.body).error) {
       res.status(400).json({ result: false, error: "양식에 맞지않음" });
       next();
@@ -99,6 +99,7 @@ router.post(
     const quiz = new Quiz({
       title,
       contents,
+      distracter,
       answer,
       tags,
       lat,

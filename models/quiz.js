@@ -5,7 +5,8 @@ const { Schema, model } = mongoose;
 
 const quizSchema = new Schema({
   title: { type: String, required: true },
-  contents: [{ type: String, required: true }],
+  contents: { type: String, required: true },
+  distracter: [{ type: String, required: true }],
   answer: { type: String, required: true },
   tags: [{ type: String }],
   lat: { type: Number, required: true },
@@ -17,7 +18,8 @@ const Quiz = model("Quiz", quizSchema);
 function validateQuiz(quiz) {
   const schema = Joi.object({
     title: Joi.string(),
-    contents: Joi.array().items(Joi.string()),
+    contents: Joi.string(),
+    distracter: Joi.array().items(Joi.string()),
     answer: Joi.string(),
     tags: Joi.array().items(Joi.string()),
     lat: Joi.number(),

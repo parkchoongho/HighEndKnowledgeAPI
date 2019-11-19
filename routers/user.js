@@ -14,7 +14,7 @@ router.post(
     const { name, password, birth, gender } = req.body;
     if (validateUser(req.body).error) {
       // 검증을 통과 못할 시
-      res.status(400).json({ result: false, error: "Wrong Input" });
+      res.json({ result: false, error: "Wrong Input" });
       next();
       return;
     }

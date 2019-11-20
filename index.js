@@ -13,12 +13,17 @@ const auth = require("./common/auth")();
 const PORT = process.env.PORT || 3000;
 const dbURI =
   process.env.MONGODB_URI ||
-  "mongodb://heroku_z2bk21tq:p9ca32e92mprk5gtajspae0pna@ds033469.mlab.com:33469/heroku_z2bk21tq";
-// "mongodb://localhost/highendknowledge";
+  // "mongodb://heroku_z2bk21tq:p9ca32e92mprk5gtajspae0pna@ds033469.mlab.com:33469/heroku_z2bk21tq";
+  "mongodb://localhost/highendknowledge";
 const app = express();
 
 app.use(helmet());
-app.use(cors());
+
+const corsOptions = {
+  methods: ["GET", "POST", "PATCH", "DELETE"]
+};
+
+app.use(cors(corsOptions));
 app.use((req, res, next) => {
   mongoose
     .connect(dbURI, {

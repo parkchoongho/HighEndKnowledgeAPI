@@ -1,12 +1,22 @@
 const express = require("express");
 
-const auth = require("../common/auth")();
 const { Quiz } = require("../models/quiz");
 const { User } = require("../models/user");
 
 const router = express.Router();
 
-router.get("/:pin_id", auth.authenticate(), async (req, res, next) => {
+router.get("/", async (req, res, next) => {
+  try {
+    const allQuizzes = await Quiz.find();
+    res.json({ result: true, allQuizzes });
+  } catch (error) {
+    res.status(500).json({ result: false, error });
+  } finally {
+    next();
+  }
+});
+
+router.get("/:pin_id", async (req, res, next) => {
   const { pin_id } = req.params;
 
   try {
@@ -20,7 +30,7 @@ router.get("/:pin_id", auth.authenticate(), async (req, res, next) => {
   }
 });
 
-router.post("/:pin_id", auth.authenticate(), async (req, res, next) => {
+router.post("/:pin_id", async (req, res, next) => {
   const { pin_id } = req.params;
   const { selectAns } = req.body;
 

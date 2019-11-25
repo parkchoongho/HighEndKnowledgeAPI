@@ -43,4 +43,28 @@ function validateUser(user) {
   return schema.validate(user);
 }
 
-module.exports = { User, validateUser };
+function validateUserInfo(userInfo) {
+  const schema = Joi.object({
+    name: Joi.string()
+      .alphanum()
+      .lowercase()
+      .min(3)
+      .max(30),
+    birth: Joi.date(),
+    gender: Joi.string()
+  });
+  return schema.validate(userInfo);
+}
+
+function validatePassword(password) {
+  const schema = Joi.object({
+    password: Joi.string()
+      .alphanum()
+      .lowercase()
+      .min(3)
+      .max(30)
+  });
+  return schema.validate(password);
+}
+
+module.exports = { User, validateUser, validatePassword, validateUserInfo };

@@ -13,8 +13,8 @@ const auth = require("./common/auth")();
 const PORT = process.env.PORT || 3000;
 const dbURI =
   process.env.MONGODB_URI ||
-  "mongodb://heroku_z2bk21tq:p9ca32e92mprk5gtajspae0pna@ds033469.mlab.com:33469/heroku_z2bk21tq";
-// "mongodb://localhost/highendknowledge";
+  // "mongodb://heroku_z2bk21tq:p9ca32e92mprk5gtajspae0pna@ds033469.mlab.com:33469/heroku_z2bk21tq";
+  "mongodb://localhost/highendknowledge";
 const app = express();
 
 app.use(helmet());
@@ -39,9 +39,9 @@ app.use(auth.initialize());
 app.use(express.json());
 
 app.use("/auth", user);
-app.use("/admin", admin);
-app.use("/api/quiz", quiz);
-app.use("/api/my", my);
+app.use("/admin", auth.authenticate(), admin);
+app.use("/api/quiz", auth.authenticate(), quiz);
+app.use("/api/my", auth.authenticate(), my);
 
 app.use(() => mongoose.disconnect());
 

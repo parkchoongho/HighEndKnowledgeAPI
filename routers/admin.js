@@ -1,11 +1,10 @@
 const express = require("express");
 
-const auth = require("../common/auth")();
 const { Quiz, validateQuiz } = require("../models/quiz");
 
 const router = express.Router();
 
-router.get("/", auth.authenticate(), async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   if (!req.user.admin) {
     res.status(400).json({ result: false, error: "권한이 없습니다" });
     next();
@@ -21,7 +20,7 @@ router.get("/", auth.authenticate(), async (req, res, next) => {
   }
 });
 
-router.get("/modify/:pin_id", auth.authenticate(), async (req, res, next) => {
+router.get("/modify/:pin_id", async (req, res, next) => {
   if (!req.user.admin) {
     res.status(400).json({ result: false, error: "권한이 없습니다" });
     next();
@@ -38,7 +37,7 @@ router.get("/modify/:pin_id", auth.authenticate(), async (req, res, next) => {
   }
 });
 
-router.patch("/modify/:pin_id", auth.authenticate(), async (req, res, next) => {
+router.patch("/modify/:pin_id", async (req, res, next) => {
   if (!req.user.admin) {
     res.status(400).json({ result: false, error: "권한이 없습니다" });
     next();
@@ -67,7 +66,7 @@ router.patch("/modify/:pin_id", auth.authenticate(), async (req, res, next) => {
   }
 });
 
-router.post("/quiz", auth.authenticate(), async (req, res, next) => {
+router.post("/quiz", async (req, res, next) => {
   //   console.log(req.user);
   if (!req.user.admin) {
     res.status(400).json({ result: false, error: "권한이 없습니다" });
@@ -93,6 +92,23 @@ router.post("/quiz", auth.authenticate(), async (req, res, next) => {
   try {
     await quiz.save();
     res.json({ result: true });
+  } catch (error) {
+    res.status(500).json({ result: false, error });
+  } finally {
+    next();
+  }
+});
+
+router.delete("/delete/:pin_id", async (req, res, next) => {
+  if (!req.user.admin) {
+    res.status(400).json({ result: false, error: "권한이 없습니다" });
+    next();
+    return;
+  }
+  const { pin_id } = req.params;
+  try {
+    await Quiz.findByIdAndDelete(pin_id);
+    res.json({ result: true, msg: "퀴즈가 삭제되었습니다." });
   } catch (error) {
     res.status(500).json({ result: false, error });
   } finally {
